@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBHS – Scott Pilgrim</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #e5d1fa;
+      padding-top: 100px;
+    }
+
+    header {
+      background: #1a1a1a;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #7e3ff2;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c19cfb;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #c19cfb;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #7e3ff2;
+    }
+
+    .comic-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .comic-cover {
+      width: 300px;
+      border-radius: 10px;
+      border: 2px solid #7e3ff2;
+      box-shadow: 0 0 20px rgba(126, 63, 242, 0.2);
+    }
+
+    .comic-title {
+      font-size: 2rem;
+      color: #c19cfb;
+      text-align: center;
+    }
+
+    .comic-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+      color: #e5d1fa;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .read-button,
+    .buy-button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .read-button {
+      background-color: #7e3ff2;
+      color: #fff;
+    }
+
+    .read-button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px #a370ff;
+    }
+
+    .buy-button {
+      background-color: #2e2e2e;
+      color: #e5d1fa;
+      border: 1px solid #7e3ff2;
+    }
+
+    .buy-button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px #7e3ff2;
+    }
+
+    .pdf-frame {
+      margin-top: 3rem;
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(126, 63, 242, 0.2);
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #a58bde;
+    }
+    .fullscreen-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.fullscreen-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-field {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-field:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #7e3ff2;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #a370ff;
+}
+
+/* Pop-up értesítés */
+.popup-notification {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #8b0000;
+  color: #fff0f0;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 0 12px #ff4d4d;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.login-button:hover ~ #loginPopup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  </style>
+</head>
+<body>
+  <header>
+  <div class="header-left">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../logo.png" alt="CBHS logó" style="height: 55px;" />
+      </a>
+    </div>
+    <nav>
+  <a href="../index.html">Home</a>
+  <a href="../collection.html">Collection</a>
+  <a href="../anime.html">Anime</a>
+  <a href="https://discord.com/invite/b6CXMWUm9d" target="_blank" rel="noopener noreferrer">Discord</a>
+  <a href="https://www.patreon.com/ZenoHUN" target="_blank" rel="noopener noreferrer">Donation</a>
+</nav>
+
+<img src="../futo.gif" alt="Runner beside Discord" style="height: 60px; margin-left: 4px; vertical-align: middle;" />
+
+  </div>
+  <div class="header-actions">
+    <a href="../login.html" class="login-button">Log In</a>
+    <div class="popup-notification" id="loginPopup">
+      ⚠️ Not Working! ⚠️
+    </div>
+  </div>
+</header>
+
+
+
+  <main>
+    <section class="comic-section">
+      <img src="../covers/cover2.jpg" alt="Scott Pilgrim vs. The World" class="comic-cover" />
+      <h1 class="comic-title">Scott Pilgrim vs. The World</h1>
+      <p class="comic-description">
+        Scott Pilgrim’s life couldn’t be more complete. At 23, he’s renting a one-room flat with his gay roommate and constantly looking for a job—with little persistence and even less success. Between his band, video games, and high school girlfriend, he cruises through Canadian weekdays—until the dangerously cool Ramona moves to town.
+
+        In a whirlwind of rising emotions, Scott must face evil exes, mystical powers, and brutal battles—so once again it turns out: love hurts and smashes bricks. Bryan Lee O’Malley’s six-volume series blends the most powerful traits of Western and Eastern comics in a delightfully witty, creative form, full of original humor and standout storytelling.
+      </p>
+
+      <div class="button-group">
+        <a href="#reader" class="read-button">📖 Read</a>
+        <a href="https://www.amazon.com/Scott-Pilgrim-Vol-vs-World/dp/1932664122/ref=sr_1_9?sr=8-9" class="buy-button" target="_blank">🛒 Buy Now</a>
+      </div>
+      <button class="fullscreen-button" onclick="openFullscreen()">🔍 Fullscreen</button>
+      <iframe id="reader" class="pdf-frame" src="../pdfs/scott-pilgrim2.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CBHS. All rights reserved.</p>
+  </footer>
+  <script>
+  function openFullscreen() {
+    const iframe = document.getElementById("reader");
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) { /* Safari */
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) { /* IE11 */
+      iframe.msRequestFullscreen();
+    }
+  }
+  
+  /*kereses */
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBHS – 86</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #e5d1fa;
+      padding-top: 100px;
+    }
+
+    header {
+      background: #1a1a1a;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #7e3ff2;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c19cfb;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #c19cfb;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #7e3ff2;
+    }
+
+    .comic-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .comic-cover {
+      width: 300px;
+      border-radius: 10px;
+      border: 2px solid #7e3ff2;
+      box-shadow: 0 0 20px rgba(126, 63, 242, 0.2);
+    }
+
+    .comic-title {
+      font-size: 2rem;
+      color: #c19cfb;
+      text-align: center;
+    }
+
+    .comic-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+      color: #e5d1fa;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .read-button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      background-color: #7e3ff2;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .read-button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 12px #a370ff;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #a58bde;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-field {
+      padding: 0.5rem;
+      border-radius: 5px;
+      background-color: #2e2e2e;
+      color: #e5d1fa;
+      border: 1px solid #7e3ff2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-field:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 10px #7e3ff2;
+    }
+
+    .login-button {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background-color: #7e3ff2;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .login-button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 10px #a370ff;
+    }
+
+    .popup-notification {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background-color: #8b0000;
+      color: #fff0f0;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      box-shadow: 0 0 12px #ff4d4d;
+      z-index: 2000;
+      opacity: 0;
+      transform: translateY(-15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .login-button:hover ~ #loginPopup {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #episodeButtons button {
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#episodeButtons button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #a370ff;
+}
+#videoContainer {
+  background-color: #000;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #7e3ff2;
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../logo.png" alt="CBHS logo" style="height: 55px;" />
+        </a>
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../collection.html">Collection</a>
+        <a href="../anime.html">Anime</a>
+        <a href="https://discord.com/invite/b6CXMWUm9d" target="_blank" rel="noopener noreferrer">Discord</a>
+        <a href="https://www.patreon.com/ZenoHUN" target="_blank" rel="noopener noreferrer">Donation</a>
+      </nav>
+      <img src="../futo.gif" alt="Runner beside Discord" style="height: 60px; margin-left: 4px; vertical-align: middle;" />
+    </div>
+    <div class="header-actions">
+      <a href="login.html" class="login-button">Log In</a>
+      <div class="popup-notification" id="loginPopup">⚠️ Not Working! ⚠️</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="comic-section">
+      <img src="../covers/anime/cover6.jpg" alt="86 - Eighty Six" class="comic-cover" />
+      <h1 class="comic-title">86 - Eighty Six</h1>
+      <p class="comic-description">
+    </p>
+The Republic of San Magnolia has been at war with the Giadian Empire for nine years. Though it initially suffered devastating losses to the Empire's autonomous mechanized Legions, The Republic has since developed its own autonomous units—Juggernauts—which are directed remotely by a Handler. While on the surface the public believes the war is being fought between machines, in reality, the Juggernauts are being piloted by humans and all of them are the Eighty-Six, the designation given to the sub-humans of the Eighty-Sixth Sector who are persecuted and stripped of their rights by the racist-led Alba government.
+
+Major Vladilena "Lena" Milizé is an Alba noble and military officer in the Republic's Military who is assigned as a Handler of the Spearhead Squadron of the Eastern Front, an elite unit composed entirely of Eighty-Sixer veterans who have earned names led by their squad leader, Shinei "Undertaker" Nouzen. As Lena gets to know Shinei and the rest of the Spearhead Squadron, she becomes sympathetic to his people's plight and tries to help them. At same time, Lena and Shinei learn a dark secret: the Republic and the war with the Empire is not what it seems.
+    <div class="button-group">
+  <button class="read-button" onclick="toggleEpisodes()">📺 Episodes</button>
+</div>
+
+<div id="episodeButtons" style="display: none; margin-top: 1rem; text-align: center;">
+  <button onclick="showEpisode(1)">1</button>
+  <button onclick="showEpisode(2)">2</button>
+  <button onclick="showEpisode(3)">3</button>
+  <button onclick="showEpisode(4)">4</button>
+  <button onclick="showEpisode(5)">5</button>
+  <button onclick="showEpisode(6)">6</button>
+  <button onclick="showEpisode(7)">7</button>
+  <button onclick="showEpisode(8)">8</button>
+  <button onclick="showEpisode(9)">9</button>
+  <button onclick="showEpisode(10)">10</button>
+  <button onclick="showEpisode(11)">11</button>
+  <button onclick="showEpisode(12)">12</button>
+  <button onclick="showEpisode(13)">13</button>
+  <button onclick="showEpisode(14)">14</button>
+  <button onclick="showEpisode(15)">15</button>
+  <button onclick="showEpisode(16)">16</button>
+  <button onclick="showEpisode(17)">17</button>
+  <button onclick="showEpisode(18)">18</button>
+  <button onclick="showEpisode(19)">19</button>
+  <button onclick="showEpisode(20)">20</button>
+  <button onclick="showEpisode(21)">21</button>
+  <button onclick="showEpisode(22)">22</button>
+  <button onclick="showEpisode(23)">23</button>
+</div>
+
+<div id="videoContainer" style="margin-top: 2rem; display: none;">
+  <iframe id="videoFrame" width="1280" height="720" style="max-width: 1920px; border: none;" allowfullscreen></iframe>
+</div>  
+    </section>
+  </main>
+<script>
+  function toggleEpisodes() {
+    const epButtons = document.getElementById("episodeButtons");
+    epButtons.style.display = epButtons.style.display === "none" ? "block" : "none";
+  }
+
+  function showEpisode(number) {
+    const video = document.getElementById("videoContainer");
+    const frame = document.getElementById("videoFrame");
+
+// Itt illeszd be a megfelelő linket az adott epizódhoz
+    const links = {
+      1: "https://indavideo.hu/video/86_-_Eighty_Six_01_resz_Magyar_Felirattal",
+      2: "https://indavideo.hu/video/86_-_Eighty_Six_02_resz_Magyar_Felirattal",
+      3: "https://indavideo.hu/video/86_-_Eighty_Six_03_resz_Magyar_Felirattal",
+      4: "https://indavideo.hu/video/86_-_Eighty_Six_04_resz_Magyar_Felirattal",
+      5: "https://indavideo.hu/video/86_-_Eighty_Six_05_resz_Magyar_Felirattal",
+      6: "https://indavideo.hu/video/86_-_Eighty_Six_06_resz_Magyar_Felirattal",
+      7: "https://indavideo.hu/video/86_-_Eighty_Six_07_resz_Magyar_Felirattal",
+      8: "https://indavideo.hu/video/86_-_Eighty_Six_08_resz_Magyar_Felirattal",
+      9: "https://indavideo.hu/video/86_-_Eighty_Six_09_resz_Magyar_Felirattal",
+      10: "https://indavideo.hu/video/86_-_Eighty_Six_10_resz_Magyar_Felirattal",
+      11: "https://indavideo.hu/video/86_-_Eighty_Six_11_resz_Magyar_Felirattal",
+      12: "https://indavideo.hu/video/86_-Eighty_Six-_-_12_resz_Magyar_Felirattal",
+      13: "https://indavideo.hu/video/86_Eighty_Six_13_resz",
+      14: "https://indavideo.hu/video/86_Eighty_Six_14_resz",
+      15: "https://indavideo.hu/video/86_Eighty_Six_15_resz",
+      16: "https://indavideo.hu/video/86_Eighty_Six_16_resz",
+      17: "https://indavideo.hu/video/86_Eighty_Six_17_resz",
+      18: "https://indavideo.hu/video/86_Eighty_Six_18_resz",
+      19: "https://indavideo.hu/video/86_Eighty_Six_19_reszl",
+      20: "https://indavideo.hu/video/86_Eighty_Six_20_resz",
+      21: "https://indavideo.hu/video/86_Eighty_Six_-_21_resz",
+      22: "https://indavideo.hu/video/86_Eighty_Six_22_resz",
+      23: "https://indavideo.hu/video/86_Eighty_Six_-_23_resz_VEGE",
+    };
+    if (links[number]) {
+      frame.src = links[number];
+      video.style.display = "block";
+    } else {
+      frame.src = "";
+      video.style.display = "none";
+      alert("No video assigned for Episode " + number);
+    }
+  }
+</script>
+
+  <footer>
+    <p>&copy; 2025 CBHS. All rights reserved.</p>
+  </footer>
+</body>
+</html>

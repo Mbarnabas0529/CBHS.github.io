@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBHS – Anime</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #e5d1fa;
+      padding-top: 80px;
+    }
+    .highlight-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+    .highlight-card img {
+  width: 300px;
+  border-radius: 8px;
+  border: 2px solid #7e3ff2;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+    .highlight-card:hover img {
+  transform: scale(1.03);
+}
+    
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #7e3ff2;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: #c19cfb;
+      font-weight: bold;
+    }
+
+    nav a {
+      margin-right: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #a370ff;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      border-radius: 5px;
+      background-color: #2e2e2e;
+      color: #e5d1fa;
+      border: 1px solid #7e3ff2;
+    }
+
+    main {
+      padding: 4rem 2rem;
+    }
+
+    .collection-grid {
+      display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+    }
+
+    .comic-card {
+      background-color: #1c1c1c;
+      border: 1px solid #7e3ff2;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 200px;
+flex: 0 0 auto;
+
+    }
+
+    .comic-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #7e3ff2;
+      cursor: pointer;
+    }
+
+    .comic-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .comic-card h4 {
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      color: #c19cfb;
+    }
+    .collection-grid a {
+  text-decoration: none;
+  color: inherit;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0e0e0e;
+  color: #e5d1fa;
+}
+
+/* === HEADER & NAV === */
+
+header {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #7e3ff2;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #c19cfb;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #c19cfb;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+nav a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #7e3ff2;
+  cursor: pointer;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+/* === HERO === */
+
+.hero {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(145deg, #1a1a1a, #2d0142);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* === HIGHLIGHTED CARD === */
+
+.highlight-section {
+  background-color: #2d0142;
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.highlight-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.highlight-card {
+  background-color: #1a1a1a;
+  border: 1px solid #7e3ff2;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+  opacity: 1;
+}
+
+.highlight-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 12px #a570f5;
+  cursor: pointer;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+
+.highlight-card img {
+  width: 300px;
+  border-radius: 8px;
+  border: 2px solid #7e3ff2;
+  transition: transform 0.3s ease-in-out;
+}
+
+.highlight-card:hover img {
+  transform: scale(1.03);
+}
+
+.highlight-text {
+  flex: 1;
+}
+
+.highlight-text h2 {
+  color: #c19cfb;
+  margin-bottom: 1rem;
+}
+
+.highlight-text p {
+  color: #e5d1fa;
+}
+
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cards a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  background-color: #2e2e2e;
+  border: 1px solid #7e3ff2;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 200px;
+  color: #e5d1fa;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+  border-color: #a370ff;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+
+.card h4 {
+  font-size: 1rem;
+  color: #c19cfb;
+  margin-top: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+.card:hover h4 {
+  transform: scale(1.08);
+}
+
+
+footer {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #a58bde;
+}
+.login-button a {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #7e3ff2;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left: 1.5rem;
+}
+
+.login-button a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #a370ff;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-field {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-field:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #7e3ff2;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #a370ff;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.popup-notification {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #8b0000;
+  color: #fff0f0;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 0 12px #ff4d4d;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.login-button:hover ~ #loginPopup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gif-runway {
+  position: absolute;
+  top: 18px;
+  left: 545px;
+  width: 9000px;
+  height: 80px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+  </style>
+</head>
+<body>
+    <header>
+  <div class="header-left">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="CBHS logó" style="height: 55px;" />
+      </a>
+    </div>
+    <nav>
+  <a href="index.html">Home</a>
+  <a href="collection.html">Collection</a>
+  <a href="anime.html">Anime</a>
+  <a href="https://discord.com/invite/b6CXMWUm9d" target="_blank" rel="noopener noreferrer">Discord</a>
+  <a href="https://www.patreon.com/ZenoHUN" target="_blank" rel="noopener noreferrer">Donation</a>
+</nav>
+
+    <img src="futo.gif" alt="Runner beside Discord" style="height: 60px; margin-left: 4px; vertical-align: middle;" />
+
+  </div>
+
+  <div class="header-actions">
+    <form id="searchForm" action="collection.html" method="get">
+  <input type="text" id="searchInput" name="search" placeholder="Browse..." class="search-field" />
+</form>
+    <a href="login.html" class="login-button">Log In</a>
+    <div class="popup-notification" id="loginPopup">
+      ⚠️ Not Working! ⚠️
+    </div>
+  </div>
+</header>
+
+  <main>
+    <section class="collection-grid" id="collectionContainer">
+      <p id="noResults" style="display: none; text-align: center; margin-top: 2rem; color: #c19cfb; font-weight: bold;">
+  No result.
+</p>
+<!-- képregények -->
+   <a href="animehtml/anime1.html" class="comic-card">
+    <img src="covers/anime/cover1.jpg" alt="Akiba Maid War">
+    <h4>Akiba Maid War</h4>
+</a>  
+  <a href="animehtml/anime2.html" class="comic-card">
+    <img src="covers/anime/cover2.jpg" alt="Your Name">
+    <h4>Your Name</h4> <!--https://videa.hu/videok/film-animacio/kimi-no-na-wayour-name-720p-hd-wa-C55KR4zLSvioyVrm-->
+</a>
+  <a href="animehtml/anime3.html" class="comic-card">
+    <img src="covers/anime/cover3.jpg" alt="Angel Beats">
+    <h4>Angel Beats</h4> 
+</a>
+  <a href="animehtml/anime4.html" class="comic-card">
+    <img src="covers/anime/cover4.jpg" alt="Weathering With You">
+    <h4>Weathering With You</h4> <!--https://videa.hu/videok/film-animacio/tenki1.mp4-film-animacio-4wSeaBTWMP3Ngn0a-->
+</a>
+  <a href="animehtml/anime5.html" class="comic-card">
+    <img src="covers/anime/cover5.jpg" alt="Domestic Girlfriend">
+    <h4>Domestic Girlfriend</h4>
+</a>
+  <a href="animehtml/anime6.html" class="comic-card">
+    <img src="covers/anime/cover6.jpg" alt="86 - Eighty Six">
+    <h4>86 - Eighty Six</h4>
+    
+<a href="animehtml/anime7.html" class="comic-card">
+    <img src="covers/anime/cover7.jpg" alt="Horimiya">
+    <h4>Horimiya </h4>
+</a>
+    <a href="animehtml/anime8.html" class="comic-card">
+    <img src="covers/anime/cover8.jpg" alt="Azumanga Daioh">
+    <h4>Azumanga Daioh</h4>
+</a>
+    <a href="animehtml/anime9.html" class="comic-card">
+    <img src="covers/anime/cover9.jpg" alt="Mirai Nikki">
+    <h4>Mirai Nikki</h4>
+</a>
+    <a href="animehtml/anime10.html" class="comic-card">
+    <img src="covers/anime/cover10.jpg" alt="Frieren: Beyond Journey's End">
+    <h4>Frieren: Beyond Journey's End</h4>
+</a>
+    <a href="animehtml/anime11.html" class="comic-card">
+    <img src="covers/anime/cover11.jpg" alt="Kaiju No. 8">
+    <h4>Kaiju No. 8</h4>
+
+    <a href="animehtml/anime12.html" class="comic-card">
+    <img src="covers/anime/cover12.jpg" alt="Solo Leveling">
+    <h4>Solo Leveling</h4>
+</a>
+
+</a>
+  <a href="animehtml/anime13.html" class="comic-card">
+    <img src="covers/anime/cover13.jpg" alt="Attack on Titan Season one">
+    <h4>Attack on Titan Season 1</h4>
+</a>
+  <a href="animehtml/anime14.html" class="comic-card">
+    <img src="covers/anime/cover14.jpg" alt="Attack on Titan Season Two">
+    <h4>Attack on Titan Season 2</h4>
+</a>
+  <a href="animehtml/anime15.html" class="comic-card">
+    <img src="covers/anime/cover15.jpg" alt="Attack on Titan Season Three">
+    <h4>Attack on Titan Season 3</h4>
+</a>
+  <a href="animehtml/anime16.html" class="comic-card">
+    <img src="covers/anime/cover16.jpg" alt="Attack on Titan Season 4">
+    <h4>Attack on Titan Season 4</h4>
+</a>
+  <a href="animehtml/anime17.html" class="comic-card">
+    <img src="covers/anime/cover17.jpg" alt="asd">
+    <h4>asd</h4>
+
+  <a href="animehtml/anime18.html" class="comic-card">
+    <img src="covers/anime/cover18.jpg" alt="18">
+    <h4>18</h4>
+</a>
+  <a href="animehtml/anime19.html" class="comic-card">
+    <img src="covers/anime/cover19.jpg" alt="19">
+    <h4>19</h4>
+</a>
+  <a href="anime20.html" class="comic-card">
+    <img src="covers/anime/cover20.jpg" alt="20">
+    <h4>20</h4>
+</a>
+  <a href="anime21.html" class="comic-card">
+    <img src="covers/cover21.jpg" alt="21">
+    <h4>21</h4>
+</a>
+  <a href="anime22.html" class="comic-card">
+    <img src="covers/anime/cover22.jpg" alt="22">
+    <h4>22</h4>
+</a>
+  <a href="anime23.html" class="comic-card">
+    <img src="covers/anime/cover23.jpg" alt="23">
+    <h4>23</h4>
+</a>
+  <a href="anime24.html" class="comic-card">
+    <img src="covers/anime/cover24.jpg" alt="24">
+    <h4>24</h4>
+</a>
+  
+</section>
+
+  </main>
+  <script>
+  const searchInput = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".comic-card");
+  const noResults = document.getElementById("noResults");
+
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase().trim();
+    let found = false;
+
+    cards.forEach(card => {
+      const title = card.querySelector("h4").textContent.toLowerCase();
+      const match = title.includes(query);
+      card.style.display = match ? "block" : "none";
+      if (match) found = true;
+    });
+
+    noResults.style.display = found || query === "" ? "none" : "block";
+  });
+  document.getElementById("searchForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // letiltja az Enterre történő elküldést
+});
+
+</script>
+
+</body>
+</html>

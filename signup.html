@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBHS – Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #e5d1fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .signup-container {
+      background-color: #1a1a1a;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      border: 1px solid #7e3ff2;
+      box-shadow: 0 0 20px rgba(126, 63, 242, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    .signup-container h1 {
+      color: #c19cfb;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .signup-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #7e3ff2;
+      border-radius: 6px;
+      background-color: #2e2e2e;
+      color: #e5d1fa;
+      font-size: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .signup-container input:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 8px #7e3ff2;
+    }
+
+    .signup-container button {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #7e3ff2;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .signup-container button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #a370ff;
+    }
+
+    .signup-container p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .signup-container a {
+      color: #a370ff;
+      text-decoration: none;
+    }
+
+    .signup-container a:hover {
+      text-decoration: underline;
+    }
+    .signup-alert {
+  background-color: #8b0000;
+  color: #fff0f0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 10px #ff4d4d;
+  animation: alertPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes alertPulse {
+  0% { box-shadow: 0 0 0px #ff4d4d; }
+  50% { box-shadow: 0 0 10px #ff4d4d; }
+  100% { box-shadow: 0 0 0px #ff4d4d; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-alert">
+  ⚠️ Not Working! ⚠️
+  <br>Currently working on it.
+</div>
+
+    <h1>Create Your CBHS Account</h1>
+    <form>
+      <input type="text" placeholder="Username" required />
+      <input type="email" placeholder="Email address" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+  </div>
+</body>
+</html>

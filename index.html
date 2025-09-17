@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBHS – Homepage</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0e0e0e;
+  color: #e5d1fa;
+}
+
+/* === HEADER & NAV === */
+
+header {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #7e3ff2;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #c19cfb;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #c19cfb;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+nav a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #7e3ff2;
+  cursor: pointer;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: #e5d1fa;
+  border: 1px solid #7e3ff2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+}
+
+/* === HERO === */
+
+.hero {
+  position: relative; /* kell a kép ráhelyezéséhez */
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(145deg, #1a1a1a, #2d0142);
+  overflow: hidden;
+}
+
+.hero .overlay-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15; /* vagy tetszőleges érték, hogy ne legyen zavaró */
+  pointer-events: none; /* így nem takarja le a szöveget kattintásra sem */
+  z-index: 0;
+}
+
+.hero h1 {
+  position: relative;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  z-index: 1;
+  color: #fff0ff;
+  text-shadow:
+    2px 2px 10px rgba(126, 63, 242, 0.8),
+    0 0 15px rgba(255, 255, 255, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@keyframes flicker {
+  0%   { opacity: 1; text-shadow: 2px 2px 8px #7e3ff2, 0 0 10px #fff; }
+  45%  { opacity: 0.9; text-shadow: 2px 2px 6px #a370ff; }
+  60%  { opacity: 1; text-shadow: 2px 2px 10px #fff, 0 0 14px #7e3ff2; }
+  75%  { opacity: 0.85; text-shadow: 1px 1px 6px #7e3ff2; }
+  100% { opacity: 1; text-shadow: 2px 2px 8px #7e3ff2; }
+}
+
+/* === HIGHLIGHTED CARD === */
+
+.highlight-section {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a, #2d0142);
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+.highlight-overlay {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.highlight-overlay.top {
+  top: 0;
+}
+
+.highlight-overlay.bottom {
+  bottom: 0;
+}
+
+
+.highlight-card {
+  background-color: #1a1a1a;
+  border: 1px solid #7e3ff2;
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+  opacity: 1;
+
+  width: 880px;         /* fix szélesség */
+  min-height: 350px;    /* vagy fix height: 350px; ha nem dinamikus a leírás */
+  overflow: hidden;
+}
+
+.highlight-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 12px #a570f5;
+  cursor: pointer;
+}
+
+.highlight-card img {
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+
+.highlight-card:hover img {
+  transform: scale(1.03);
+}
+
+.highlight-text {
+  flex: 1;
+}
+
+.highlight-text h2 {
+  color: #c19cfb;
+  margin-bottom: 1rem;
+}
+
+.highlight-text p {
+  color: #e5d1fa;
+}
+.highlight-wrapper {
+  max-width: 880px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.highlight-overlay {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === ARROWS === */
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: #1a1a1a;
+  color: #e5d1fa;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #7e3ff2;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+  z-index: 2; /* EZ A FONTOS!!! */
+}
+
+
+.arrow:hover {
+  background-color: #311256;
+  box-shadow: 0 0 10px #a370ff;
+}
+
+.arrow.left {
+  left: -50px;
+}
+
+.arrow.right {
+  right: -50px;
+}
+
+/* === POPULAR RIGHT NOW === */
+
+.recommendations {
+  padding: 3rem 2rem;
+  background-color: #161616;
+  text-align: center;
+}
+
+.recommendations h2 {
+  color: #fff0ff;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-shadow:
+    2px 2px 10px rgba(126, 63, 242, 0.8),
+    0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cards a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  background-color: #2e2e2e;
+  border: 1px solid #7e3ff2;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 200px;
+  color: #e5d1fa;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #7e3ff2;
+  border-color: #a370ff;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover img {
+  transform: scale(1.03);
+}
+
+.card h4 {
+  font-size: 1rem;
+  color: #c19cfb;
+  margin-top: 0.5rem;
+  transition: transform 0.3s ease-in-out;
+}
+.card:hover h4 {
+  transform: scale(1.08);
+}
+
+/* === FOOTER === */
+
+footer {
+  background-color: #1a1a1a;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #a58bde;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.login-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #7e3ff2;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px #a370ff;
+}
+.popup-notification {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #8b0000;
+  color: #fff0f0;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 0 12px #ff4d4d;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.login-button:hover ~ #loginPopup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+<div class="header-left">
+  <div class="logo">
+    <a href="index.html">
+      <img src="logo.png" alt="CBHS logo" style="height: 55px;" />
+    </a>
+  </div>
+  <nav>
+  <a href="index.html">Home</a>
+  <a href="collection.html">Collection</a>
+  <a href="anime.html" id="animeLink">Anime</a>
+  <a href="https://discord.com/invite/b6CXMWUm9d" target="_blank" rel="noopener noreferrer">Discord</a>
+  <a href="https://www.patreon.com/ZenoHUN" target="_blank" rel="noopener noreferrer">Donation</a>
+</nav>
+<img src="futo.gif" alt="Runner beside Discord" style="height: 60px; margin-left: 4px; vertical-align: middle;" />
+
+</div>
+  <div class="header-actions">
+  
+  <a href="login.html" class="login-button">Log In</a>
+  <div class="popup-notification" id="loginPopup">
+    ⚠️ Not Working! ⚠️
+  </div>
+</div>
+</header>
+
+  <main>
+<section class="hero">
+  <img src="images/overlay.jpg" alt="" class="overlay-image" />
+  <h1>Welcome<br> to <br> Comic Book Haven Society!</h1>
+</section>
+
+<section class="highlight-section">
+  <img src="images/overlay2.jpg" alt="felső overlay" class="highlight-overlay top" />
+  <img src="images/overlay3.jpg" alt="alsó overlay" class="highlight-overlay bottom" />
+
+  <div class="highlight-wrapper">
+    <!-- Itt a meglévő Scott Pilgrim kártya -->
+  </div>
+      <div class="highlight-wrapper">
+        <span class="arrow left" onclick="prevCard()">⟵</span>
+        <a id="highlightLink" href="comic1.html" style="text-decoration: none; color: inherit;">
+          <div class="highlight-card" id="highlightCard">
+            <img id="highlightImage" src="covers/cover1.jpg" alt="Comic cover">
+            <div class="highlight-text">
+              <h2 id="highlightTitle">Scott Pilgrim's Precious Little Life</h2>
+              <p id="highlightDesc">Scott Pilgrim’s life couldn’t be more complete. At 23, he’s renting a one-room flat with his gay roommate and is constantly looking for a job—with little persistence and even less success. With a band, video games, and a high school girlfriend in his life, he’s counting down the Canadian weekdays—until the dangerously cool Ramona moves to town. > > In the whirlwind of awakening feelings, Scott is forced to face evil exes, mystical powers, and intense battles—so once again it turns out: love hurts and bursts tiles. > > Bryan Lee O’Malley’s six-part series blends the most valuable traits of Western and Eastern comics in an endlessly witty and creative way, with original humor and a remarkable story.</p>
+            </div>
+          </div>
+        </a>
+        <span class="arrow right" onclick="nextCard()">⟶</span>
+      </div>
+    </section>
+
+    <section class="recommendations">
+  <h2>Popular Right Now</h2>
+  <div class="cards">
+    <a href="comic1.html" class="card">
+      <img src="covers/cover1.jpg" alt="Scott Pilgrim">
+      <h4>🔥 Scott Pilgrim's Precious Little Life </h4>
+    </a>
+    <a href="animehtml/anime8.html" class="card">
+      <img src="covers/anime/cover8.jpg" alt="Azumanga Daioh">
+      <h4>🚀 Azumanga Daioh</h4>
+    </a>
+    <a href="comichtml/comic3.html" class="card">
+      <img src="covers/cover3.jpg" alt="Égi Korszak">
+      <h4>🎯 Scott Pilgrim and the Infinite Sadness</h4>
+    </a>
+     <a href="animehtml/anime5.html" class="card">
+      <img src="covers/anime/cover5.jpg" alt="Domestic Girlfriend">
+      <h4>🔥 Domestic Girlfriend </h4>
+    </a>
+     <a href="comic1.html" class="card">
+      <img src="covers/cover1.jpg" alt="Scott Pilgrim">
+      <h4>🚀 KR LEGYEN </h4>
+    </a>
+     <a href="animehtml/anime1.html" class="card">
+      <img src="covers/anime/cover1.jpg" alt="Akiba Maid War">
+      <h4>🎯 Akiba Maid War </h4>
+    </a>
+  </div>
+</section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CBHS. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const highlights = [
+      {
+        title: "Scott Pilgrim's Precious Little Life",
+        desc: "Scott Pilgrim’s life couldn’t be more complete. At 23, he’s renting a one-room flat with his gay roommate and is constantly looking for a job—with little persistence and even less success. With a band, video games, and a high school girlfriend in his life, he’s counting down the Canadian weekdays—until the dangerously cool Ramona moves to town. > > In the whirlwind of awakening feelings, Scott is forced to face evil exes, mystical powers, and intense battles—so once again it turns out: love hurts and bursts tiles. > > Bryan Lee O’Malley’s six-part series blends the most valuable traits of Western and Eastern comics in an endlessly witty and creative way, with original humor and a remarkable story.",
+        img: "covers/cover1.jpg",
+        link: "comic1.html"
+      },
+      {
+        title: "Solo Leveling",
+        desc: "Follows the adventures of Sung Jinwoo in a world that is constantly threatened by monsters and evil forces. In his battles Sung transforms himself from the weakest hunter of all mankind to one of the strongest hunters in existence.",
+        img: "covers/anime/cover12.jpg",
+        link: "animehtml/anime12.html"
+      },
+      {
+        title: "Azumanga Daioh",
+        desc: "Azumanga Daioh chronicles everyday life at an unnamed high school in Japan. In the manga, the setting is never named. The anime is specifically set in Tokyo following the trials and triumphs of six girls: reserved Sakaki's obsession with cute animals, Chiyo's struggle to fit in with girls five years older, Osaka's spacey nature and skewed perspective on the world, Yomi's aggravation at an annoying best friend, Tomo, whose energy is rivaled only by her lack of sense, and Kagura's efforts in sports and school. The story covers three years of tests, culture festivals, and athletic events at school, after-school life at the nearby shopping district, at Chiyo's large house, vacations spent at Chiyo's summer home on the beach and at Magical Land, a theme park.",
+        img: "covers/anime/cover8.jpg",
+        link: "animehtml/anime8.html"
+      },
+      {
+        title: "Nulladik Kód",
+        desc: "Egy AI megírja a saját történelmét – és lehet, hogy az emberiség végét is.", 
+        img: "comic4.jpg", 
+        link: "comic4.html" },
+      { 
+        title: "Káoszlovagok", 
+        desc: "Lángoló motorok, láncos fegyverek és törvényen kívüli igazságszolgáltatás a posztapokaliptikus prérin.", 
+        img: "comic5.jpg", 
+        link: "comic5.html" 
+      }, 
+      { 
+        title: "Idővonalak", 
+        desc: "Egy tudós véletlenül összekuszálja a múltat, és a képregényhősök kiszabadulnak a lapokból.", 
+        img: "comic6.jpg", 
+        link: "comic6.html" } ];
+
+let current = 0; const card = document.getElementById("highlightCard");
+
+function updateCard(index) { card.style.opacity = 0; setTimeout(() => { document.getElementById("highlightTitle").textContent = highlights[index].title; document.getElementById("highlightDesc").textContent = highlights[index].desc; document.getElementById("highlightImage").src = highlights[index].img; document.getElementById("highlightImage").alt = highlights[index].title; document.getElementById("highlightLink").href = highlights[index].link; card.style.opacity = 1; }, 400); }
+
+function nextCard() { current = (current + 1) % highlights.length; updateCard(current); }
+
+function prevCard() { current = (current - 1 + highlights.length) % highlights.length; updateCard(current); }
+
+setInterval(() => { nextCard(); }, 20000); 
+
+
+/* sikits ha baj van */
+  function showLoginPopup() {
+    const popup = document.getElementById("loginPopup");
+    popup.classList.add("show");
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 5000); // 5 másodpercig látszik
+  }
+
+  // Automatikusan megjelenik oldalbetöltéskor
+  window.addEventListener("load", showLoginPopup);
+
+  // popup anime //
+  
+</script> 
+</body> 
+</html>
